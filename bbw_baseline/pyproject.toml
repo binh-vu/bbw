@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "bbw_baseline"
+version = "1.0.0"
+description = ""
+authors = ["Binh Vu <binh@toan2.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+sem-desc = "~3.3.0"
+kgdata = "~1.6.2"
+ftfy = "^6.1.1"
+beautifulsoup4 = "^4.9.3"
+pandas = "^1.4.1"
+numpy = "^1.22.3"
+requests = "^2.27.1"
+tqdm = "^4.63.1"
+langid = "==1.1.6"
+jdcal = "^1.4.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
