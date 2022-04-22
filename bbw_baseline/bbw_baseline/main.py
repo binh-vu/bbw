@@ -5,7 +5,7 @@ from kgdata.wikidata.models import QNode
 from sm.inputs.table import ColumnBasedTable
 import pandas as pd
 from bbw_baseline.bbw_modified import BBWSearchFn, annotate
-from sm.misc import Parallel
+from sm.misc import parallel_map
 
 
 Example = TypedDict(
@@ -52,11 +52,6 @@ class AnnotateFn:
         )
 
         return annotation
-        # except:
-        #     return
-        # [web_table, url_table, label_table, cpa, cea, cta] = annotation
-        # M.serialize_pkl({"table": table, "annotation": annotation}, outfile)
-        # return annotation
 
 
 def predict(
@@ -91,8 +86,7 @@ def predict(
         target_cpa_file=target_cpa_file,
         target_cta_file=target_cta_file,
     )
-    pp = Parallel()
-    annotations = pp.map(
+    annotations = parallel_map(
         annotator.annotate,
         [
             (ann_args[0], examples[i]["table"])
