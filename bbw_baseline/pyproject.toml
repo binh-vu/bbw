@@ -7,14 +7,14 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-sem-desc = "~3.3.0"
-kgdata = "^1.7.0"
+sem-desc = "~3.4.2"
+kgdata = "^1.7.2"
 ftfy = "^6.1.1"
 beautifulsoup4 = "^4.9.3"
 pandas = "^1.4.1"
 numpy = "^1.22.3"
 requests = "^2.27.1"
-tqdm = "^4.63.1"
+tqdm = "^4.64.0"
 langid = "==1.1.6"
 jdcal = "^1.4.1"
 
