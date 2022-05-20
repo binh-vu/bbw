@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 from typing import Dict, List, Mapping, Optional, Set, Tuple, TypedDict
-from kgdata.wikidata.models import QNode
+from kgdata.wikidata.models import WDEntity
 from sm.inputs.table import ColumnBasedTable
 import pandas as pd
 from bbw_baseline.bbw_modified import BBWSearchFn, annotate
@@ -55,7 +55,7 @@ class AnnotateFn:
 
 
 def predict(
-    qnodes: Mapping[str, QNode],
+    qnodes: Mapping[str, WDEntity],
     examples: List[Example],
     cache_dir: Path,
     is_semtab: bool,
