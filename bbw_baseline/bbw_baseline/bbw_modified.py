@@ -1347,6 +1347,11 @@ class BBWSearchFn:
                 "http://www.wikidata.org/prop/direct/",
                 "http://www.wikidata.org/entity/",
             )
+        if url.startswith("http://www.wikidata.org/prop/"):
+            url = url.replace(
+                "http://www.wikidata.org/prop/",
+                "http://www.wikidata.org/entity/",
+            )
 
         if WikidataNamespace.is_abs_uri_entity(url):
             ent_id = WikidataNamespace.get_entity_id(url)
