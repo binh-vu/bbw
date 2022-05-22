@@ -1176,7 +1176,7 @@ class BBWSearchFn:
         for ent in ents:
             item = self.get_ent_uri(ent.id)
             item_types = [
-                self.get_ent_uri(stmt.value.as_entity_id())
+                self.get_ent_uri(stmt.value.as_entity_id_safe())
                 for stmt in ent.props.get("P31", [])
             ]
             if len(item_types) == 0:
@@ -1185,7 +1185,7 @@ class BBWSearchFn:
             for p, stmts in ent.props.items():
                 for stmt in stmts:
                     value_label = self.extract_datavalue_label(stmt.value, lang)
-                    if stmt.value.is_qnode():
+                    if stmt.value.is_entity_id(stmt.value):
                         if stmt.value.as_entity_id().startswith("P"):
                             value = self.get_prop_uri(stmt.value.as_entity_id())
                         elif stmt.value.as_entity_id().startswith("Q"):
@@ -1198,7 +1198,7 @@ class BBWSearchFn:
                             value_types = [None]
                         else:
                             value_types = [
-                                self.get_ent_uri(x.value.as_entity_id())
+                                self.get_ent_uri(x.value.as_entity_id_safe())
                                 for x in self.qnodes[
                                     stmt.value.as_entity_id()
                                 ].props.get("P31", [])
@@ -1253,7 +1253,7 @@ class BBWSearchFn:
             ent
             for ent in ents
             if any(
-                stmt.value.as_entity_id() == datatype
+                stmt.value.as_entity_id_safe() == datatype
                 for stmt in ent.props.get("P31", [])
             )
         ]
@@ -1263,9 +1263,9 @@ class BBWSearchFn:
         results = []
         for ent in ents:
             item = self.get_ent_uri(ent.id)
-            item_label = ent.label.as_lang(lang, "")
+            item_label = ent.label.as_lang_default(lang, "")
             if item_label == "":
-                item_label = ent.label.as_lang("en", "")
+                item_label = ent.label.as_lang_default("en", "")
                 assert item_label != ""
             result = {
                 "item": item,
@@ -1383,7 +1383,7 @@ class BBWSearchFn:
                     break
 
                 for stmt in self.qnodes[ptr].props.get("P279", []):
-                    if stmt.value.is_entity_id():
+                    if stmt.value.is_entity_id(stmt.value):
                         pid = stmt.value.as_entity_id()
                         if pid in visited and visited[pid] >= distance + 1:
                             continue
