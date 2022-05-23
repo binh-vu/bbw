@@ -95,7 +95,7 @@ def predict(
         show_progress=True,
         progress_desc="bbw annotates",
         is_parallel=True,
-        n_processes=min(16, os.cpu_count() or 4),
+        n_processes=os.cpu_count(),
     )
     outputs = []
     for i, example in enumerate(examples):
