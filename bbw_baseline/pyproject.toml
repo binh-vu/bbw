@@ -1,14 +1,14 @@
 [tool.poetry]
 name = "bbw_baseline"
-version = "2.0.0"
+version = "2.0.1"
 description = ""
 authors = ["Binh Vu <binh@toan2.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-sem-desc = "~3.5.1"
-kgdata = "^2.2.1"
+sem-desc = "~3.5.2"
+kgdata = "^2.3.0"
 ftfy = "^6.1.1"
 beautifulsoup4 = "^4.9.3"
 pandas = "^1.4.1"
